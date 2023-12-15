@@ -96,13 +96,24 @@ def sharpen_image(image):
     # Custom implementation
     height, width = image.shape[:2]
     sharpened_image = np.zeros_like(image)
+
+    # Handle padding to avoid border issues
     padded_image = cv2.copyMakeBorder(image, 1, 1, 1, 1, cv2.BORDER_REPLICATE)
 
+    # Apply the kernel to each pixel
     for j in range(1, height + 1):
         for k in range(1, width + 1):
-            # Applying the kernel on each pixel
-            sharpened_pixel = np.sum(kernel * padded_image[j-1:j+2, k-1:k+2], axis=(0, 1))
-            sharpened_image[j-1, k-1] = np.clip(sharpened_pixel, 0, 255)
+            # Applying the kernel on each pixel, considering all color channels
+            red_channel = np.sum(kernel * padded_image[j-1:j+2, k-1:k+2, 0])
+            green_channel = np.sum(kernel * padded_image[j-1:j+2, k-1:k+2, 1])
+            blue_channel = np.sum(kernel * padded_image[j-1:j+2, k-1:k+2, 2])
+
+            # Keeping values within 0-255 range
+            sharpened_pixel = [np.clip(red_channel, 0, 255),
+                               np.clip(green_channel, 0, 255),
+                               np.clip(blue_channel, 0, 255)]
+
+            sharpened_image[j-1, k-1] = sharpened_pixel
     
     return sharpened_image.astype(np.uint8)
 
