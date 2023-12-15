@@ -142,6 +142,3 @@ def main(image):
       return image
     
     return image
-
-if __name__ == "__main__":
-    main()

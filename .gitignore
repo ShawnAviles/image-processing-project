@@ -2,4 +2,7 @@ __pycache__/
 
 # Ignore all ouputted files
 *_enhanced.JPG
-*_restored.JPG
+*_reconstructed.JPG
+
+# Ignore file from compression
+*.dat

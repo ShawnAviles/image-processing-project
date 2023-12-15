@@ -2,6 +2,7 @@ import cv2
 import sys
 import matplotlib.pyplot as plt
 from topics.image_enhancement import main as enhance_image
+from topics.image_compression import main as compress_image
 
 # Input handling
 if len(sys.argv) != 2:
@@ -16,14 +17,15 @@ new_image = image.copy()
 window_title = "Image"
 
 # Get User Input for editing image
-user_choice = input("How would you like to edit the image?\n1. Image Enhancement \n2. Image Restoration\nEnter the number of your choice (1,2): ")
+user_choice = input("How would you like to edit the image?\n1. Image Enhancement \n2. Image Compression\nEnter the number of your choice (1,2): ")
 
 if user_choice == '1':
   new_image = enhance_image(image)
   window_title = "enhanced"
 elif user_choice == '2':
-  window_title = "restored"
-  # new_image = restore_image(image)
+# perform image compression, print Peak-signal-to-noise ratio (PSNR) and display the reconstructed image
+  new_image = compress_image(image)
+  window_title = "reconstructed"
 else:
   print("Invalid option selected. Aborting...")
   exit()
