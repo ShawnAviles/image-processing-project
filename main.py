@@ -1,6 +1,5 @@
 import cv2
 import sys
-import matplotlib.pyplot as plt
 from topics.image_enhancement import main as enhance_image
 from topics.image_compression import main as compress_image
 

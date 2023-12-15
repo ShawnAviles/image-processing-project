@@ -6,7 +6,13 @@ CPE 492 Project
 
 1. `git clone https://github.com/ShawnAviles/image-processing-project.git`
 
-1. install opencv: `conda install -c menpo opencv`
+1. Install Dependencies
+	- We need OpenCV, NumPy, and PyWavelets
+		- `pip install -c menpo opencv`
+		- `pip install numpy` 
+		- `pip install pywavelets`
+	- If you're using a Conda Environment you can replace `pip` with `conda` in the previous commands
+	- The `sys` and `pickle` modules are installed with Python on default
 
 1. run: `python main.py test.JPG`
-	- follow the steps to view the new image
+	- follow the steps to view the new altered image
